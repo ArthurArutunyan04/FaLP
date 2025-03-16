@@ -16,11 +16,25 @@ let Solve a b c =
         else Quadratic(((-b + sqrt(D))/(2. * a), (-b - sqrt(D))/(2. * a)))
 
 
+let circle_square radius =
+    System.Math.PI * radius ** 2.0
+
+let cylinder_volume_superpos (radius, height) = 
+    let cylinder_base_square = 
+        circle_square radius
+    height * cylinder_base_square
+
+let cylinder_volume_carry radius height =
+    let cylinder_base_square = 
+        circle_square radius
+    height * cylinder_base_square
+
 [<EntryPoint>]
 let main (args : string[]) =
 
     printfn "Hello from F#"
-
+(*
+    System.Console.WriteLine("Введите коэффициенты уравнения a, b, c:")
     let a = Double.Parse(System.Console.ReadLine())
     let b = Double.Parse(System.Console.ReadLine())
     let c = Double.Parse(System.Console.ReadLine())
@@ -31,4 +45,19 @@ let main (args : string[]) =
         None -> System.Console.WriteLine("Нет решений")
         | Linear(x) -> System.Console.WriteLine("Линейное уравнение, корень :{0}", x)
         | Quadratic(x1, x2) -> System.Console.WriteLine("Корни уравнения: {0}, {1}", x1, x2) 
+*)
+    
+    System.Console.WriteLine("Введите радиус и высоту:")
+    let radius = Double.Parse(System.Console.ReadLine())
+    let height = Double.Parse(System.Console.ReadLine())
+
+    let square_circle = circle_square radius
+    System.Console.WriteLine("Площадь круга: {0}", square_circle)
+
+    let vulume_superpos = cylinder_volume_superpos (radius, height)
+    System.Console.WriteLine("Объем цилиндра с использованием суперпозиции: {0}", vulume_superpos)
+    
+    let vulume_carry = cylinder_volume_carry radius height
+    System.Console.WriteLine("Объем цилиндра с использованием суперпозиции: {0}", vulume_carry)
+    
     0
