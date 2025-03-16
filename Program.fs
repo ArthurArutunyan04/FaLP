@@ -68,7 +68,10 @@ let main (args : string[]) =
     let number = Int32.Parse(System.Console.ReadLine())
 
     let sum_rec_top = sum_digits_top number
-    System.Console.WriteLine("Сумма цифр с использованием рекурсии ввниз {0}", sum_rec_top)
+    System.Console.WriteLine("Сумма цифр с использованием рекурсии вверх {0}", sum_rec_top)
 
+    let sum_rec_down = sum_digits_down number
+    System.Console.WriteLine("Сумма цифр с использованием рекурсии ввниз {0}", sum_rec_down)
 
+    
     0
