@@ -1,5 +1,5 @@
 ﻿open System
-
+open WorkingWithNumbers.NumberFunctions
 
 type SolveQuadratic = 
     None
@@ -31,9 +31,10 @@ let cylinder_volume_carry radius height =
 
 [<EntryPoint>]
 let main (args : string[]) =
-
-    printfn "Hello from F#"
 (*
+    printfn "Hello from F#"
+
+
     System.Console.WriteLine("Введите коэффициенты уравнения a, b, c:")
     let a = Double.Parse(System.Console.ReadLine())
     let b = Double.Parse(System.Console.ReadLine())
@@ -45,7 +46,8 @@ let main (args : string[]) =
         None -> System.Console.WriteLine("Нет решений")
         | Linear(x) -> System.Console.WriteLine("Линейное уравнение, корень :{0}", x)
         | Quadratic(x1, x2) -> System.Console.WriteLine("Корни уравнения: {0}, {1}", x1, x2) 
-*)
+
+
     
     System.Console.WriteLine("Введите радиус и высоту:")
     let radius = Double.Parse(System.Console.ReadLine())
@@ -59,5 +61,14 @@ let main (args : string[]) =
     
     let vulume_carry = cylinder_volume_carry radius height
     System.Console.WriteLine("Объем цилиндра с использованием суперпозиции: {0}", vulume_carry)
-    
+*)
+
+
+    System.Console.WriteLine("Введите число:")
+    let number = Int32.Parse(System.Console.ReadLine())
+
+    let sum_rec_top = sum_digits_top number
+    System.Console.WriteLine("Сумма цифр с использованием рекурсии ввниз {0}", sum_rec_top)
+
+
     0
