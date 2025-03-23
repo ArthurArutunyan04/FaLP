@@ -131,7 +131,6 @@ let main (args : string[]) =
     let language = System.Console.ReadLine()
     let favorite_language = respond_favorite_language  language
     System.Console.WriteLine(favorite_language)
-*)
 
     //Задание 13 
     let sum_coprime  = traverse_coprime 5003 (fun acc digit -> acc + digit) 0 
@@ -151,6 +150,11 @@ let main (args : string[]) =
 
     let count_coprime_with_condition = traverse_coprime_condition 5003 (fun acc _ -> acc + 1) 0 (fun d -> d > 3)
     System.Console.WriteLine("Количество взаимно простых цифр > 3: {0}", count_coprime_with_condition)
+*)
+
+    let prime_divisors_sum = sum_prime_divisors 28
+    System.Console.WriteLine("Сумма простых делителей {0}", prime_divisors_sum)
+
 
 
     0

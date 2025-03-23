@@ -79,3 +79,25 @@ module NumberFunctions =
         trav number acum
 
             
+    let is_prime number =
+        let rec check divisor =
+            match divisor * divisor > number with
+            | true -> true  
+            | false ->  
+                match number % divisor = 0 with
+                | true -> false  
+                | false -> check (divisor + 1) 
+        match number < 2 with
+        | true -> false  
+        | false -> check 2
+
+
+    let sum_prime_divisors number = 
+        let rec sum_divisors n acc divisor =
+            match divisor > n / 2 with
+            true -> acc
+            | false -> 
+                match n % divisor = 0, is_prime divisor with
+                true, true -> sum_divisors n (acc + divisor) (divisor + 1)
+                | _ -> sum_divisors n acc (divisor + 1)
+        sum_divisors number 0 2
