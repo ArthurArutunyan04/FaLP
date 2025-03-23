@@ -69,26 +69,33 @@ let main (args : string[]) =
     
     let vulume_carry = cylinder_volume_carry radius height
     System.Console.WriteLine("Объем цилиндра с использованием суперпозиции: {0}", vulume_carry)
-*)
-   
 
     System.Console.WriteLine("Введите число:")
-    let number = Int32.Parse(System.Console.ReadLine())
-    
+    let number = Int32.Parse(System.Console.ReadLine())    
 
-(*    let sum_rec_top = sum_digits_top number
+    let sum_rec_top = sum_digits_top number
     System.Console.WriteLine("Сумма цифр с использованием рекурсии вверх {0}", sum_rec_top)
 
     let sum_rec_down = sum_digits_down number
     System.Console.WriteLine("Сумма цифр с использованием рекурсии ввниз {0}", sum_rec_down)
-*)
 
     let test =  func true number
     System.Console.WriteLine("Ответ: {0}", test)
 
     let test =  func false number
     System.Console.WriteLine("Ответ: {0}", test)
+*)
+    let sum_digits = traverse 132 (fun acc digit -> acc + digit) 0
+    System.Console.WriteLine("Сумма цифр: {0}", sum_digits)
 
+    let product_digits = traverse 132 (fun acc digit -> acc * digit) 1
+    System.Console.WriteLine("Произведение цифр: {0}", product_digits)
+
+    let min_digit = traverse 132 (fun acc digit -> min acc digit) 9
+    System.Console.WriteLine("Минимальная цифра: {0}", min_digit)
+
+    let max_digit = traverse 132 (fun acc digit -> max acc digit) 0
+    System.Console.WriteLine("Максимальная цифра: {0}", max_digit)
 
 
     0

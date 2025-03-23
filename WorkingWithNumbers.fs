@@ -28,6 +28,14 @@ module NumberFunctions =
         fact number
 
 
-   
+    let traverse number operation acum = 
+        let rec trav number acc =
+            match number with 
+            0 -> acc 
+            | _ ->
+                let digit = number % 10
+                trav (number/10) (operation acc digit)
+        trav number acum
 
-    
+
+
