@@ -38,4 +38,16 @@ module NumberFunctions =
         trav number acum
 
 
+    let traverse_condition number operation acum predicate =
+        let rec trav number acc =
+            match number with
+            | 0 -> acc  
+            | _ -> 
+                let digit = number % 10
+                let newAcc = if predicate digit then operation acc digit else acc
+                trav (number / 10) newAcc  
+        trav number acum
+
+
+
 
