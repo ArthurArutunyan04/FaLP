@@ -125,13 +125,32 @@ let main (args : string[]) =
 
     let max_less_5 = traverse_condition 7214 (fun acc digit -> max acc digit) 0 (fun digit -> digit < 5)
     System.Console.WriteLine("Максимальная цифра < 5: {0}", max_less_5)
-*)
 
     // Задание 11
     System.Console.WriteLine("Введите любимый язык программирования")
     let language = System.Console.ReadLine()
     let favorite_language = respond_favorite_language  language
     System.Console.WriteLine(favorite_language)
+*)
+
+    //Задание 13 
+    let sum_coprime  = traverse_coprime 5003 (fun acc digit -> acc + digit) 0 
+    System.Console.WriteLine("Сумма взаимно простых цифр: {0}", sum_coprime)
+
+    let min_coprime = traverse_coprime 5003 (fun acc digit -> min acc digit) 9
+    System.Console.WriteLine("Минимальная взаимно простая цифра: {0}", min_coprime)
+
+
+    // Задание 14
+    let count_coprime = euler_phi 1234
+    System.Console.WriteLine("Функция Эйлера φ({0}) = {1}", 12, count_coprime)
+
+    // Задание 15
+    let sum_coprime_with_condition = traverse_coprime_condition 5003 (fun acc digit -> acc + digit) 0 (fun d -> d % 2 <> 0)
+    System.Console.WriteLine("Сумма нечетных взаимно простых цифр: {0}", sum_coprime_with_condition)
+
+    let count_coprime_with_condition = traverse_coprime_condition 5003 (fun acc _ -> acc + 1) 0 (fun d -> d > 3)
+    System.Console.WriteLine("Количество взаимно простых цифр > 3: {0}", count_coprime_with_condition)
 
 
     0

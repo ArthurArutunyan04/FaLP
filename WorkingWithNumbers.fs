@@ -40,14 +40,42 @@ module NumberFunctions =
 
     let traverse_condition number operation acum predicate =
         let rec trav number acc =
-            match number with
-            | 0 -> acc  
-            | _ -> 
-                let digit = number % 10
-                let newAcc = if predicate digit then operation acc digit else acc
-                trav (number / 10) newAcc  
+            match number, predicate (number % 10) with
+            0, _ -> acc  
+            | _ , true -> trav (number / 10) (operation acc (number % 10))
+            | _, false -> trav (number / 10) acc 
         trav number acum
 
 
+    let rec GCD a b = 
+        match b with 
+        0 -> a
+        | _ -> GCD b (a % b)
 
 
+    let traverse_coprime number operation acum =
+        let rec trav num acc =
+            match num with
+            | 0 -> acc
+            | _ ->
+                let digit = num % 10
+                let newAcc = if GCD number digit = 1 then operation acc digit else acc
+                trav (num / 10) newAcc
+        trav number acum
+
+
+    let euler_phi number =
+        traverse_coprime number (fun acc _ -> acc + 1) 0
+
+
+    let traverse_coprime_condition number operation acum condition = 
+        let rec trav num acc = 
+            match num with
+            | 0 -> acc
+            | _ when GCD number (num % 10) = 1 && condition (num % 10) ->
+                trav (num / 10) (operation acc (num % 10))
+            | _ -> 
+                trav (num / 10) acc
+        trav number acum
+
+            
