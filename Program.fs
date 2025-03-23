@@ -34,6 +34,19 @@ let func bool_ =
         true -> sum_digits_down
         | false -> factorial
 
+
+let respond_favorite_language language = 
+    match language with 
+    "F#" | "Prolog" -> "Ну конечно, подлиза!"
+    | "Ruby" -> "Легенда"
+    | "R" | "VB" -> "Зря."
+    | "C#" |"C++" -> "Чел, ..."
+    | "Java" | "JS" -> "Выбор нормального человека"
+    | "Python" -> "Фрик"
+    | "PHP" | "GO" | "Rust" -> "Норм"
+    | _ -> "Это какой-то нн?"
+
+
 [<EntryPoint>]
 let main (args : string[]) =
 (*
@@ -98,7 +111,7 @@ let main (args : string[]) =
 
     let max_digit = traverse 132 (fun acc digit -> max acc digit) 0
     System.Console.WriteLine("Максимальная цифра: {0}", max_digit)
-*)
+
 
     // Задание 9-10
     let sum_even = traverse_condition 7214 (fun acc digit -> acc + digit) 0 (fun digit -> digit % 2 = 0)
@@ -112,5 +125,13 @@ let main (args : string[]) =
 
     let max_less_5 = traverse_condition 7214 (fun acc digit -> max acc digit) 0 (fun digit -> digit < 5)
     System.Console.WriteLine("Максимальная цифра < 5: {0}", max_less_5)
+*)
+
+    // Задание 11
+    System.Console.WriteLine("Введите любимый язык программирования")
+    let language = System.Console.ReadLine()
+    let favorite_language = respond_favorite_language  language
+    System.Console.WriteLine(favorite_language)
+
 
     0
