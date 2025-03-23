@@ -29,6 +29,14 @@ let cylinder_volume_carry radius height =
         circle_square radius
     height * cylinder_base_square
 
+let func bool_ = 
+    match bool_ with 
+        true -> sum_digits_down
+        | false -> factorial
+
+
+
+
 [<EntryPoint>]
 let main (args : string[]) =
 (*
@@ -62,16 +70,25 @@ let main (args : string[]) =
     let vulume_carry = cylinder_volume_carry radius height
     System.Console.WriteLine("Объем цилиндра с использованием суперпозиции: {0}", vulume_carry)
 *)
-
+   
 
     System.Console.WriteLine("Введите число:")
     let number = Int32.Parse(System.Console.ReadLine())
+    
 
-    let sum_rec_top = sum_digits_top number
+(*    let sum_rec_top = sum_digits_top number
     System.Console.WriteLine("Сумма цифр с использованием рекурсии вверх {0}", sum_rec_top)
 
     let sum_rec_down = sum_digits_down number
     System.Console.WriteLine("Сумма цифр с использованием рекурсии ввниз {0}", sum_rec_down)
+*)
 
-    
+    let test =  func true number
+    System.Console.WriteLine("Ответ: {0}", test)
+
+    let test =  func false number
+    System.Console.WriteLine("Ответ: {0}", test)
+
+
+
     0
