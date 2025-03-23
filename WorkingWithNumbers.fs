@@ -101,3 +101,28 @@ module NumberFunctions =
                 true, true -> sum_divisors n (acc + divisor) (divisor + 1)
                 | _ -> sum_divisors n acc (divisor + 1)
         sum_divisors number 0 2
+
+    
+    let count_odd_digit_greater_tree number =
+        let rec count_digits n acc = 
+            match n with
+            0 -> acc
+            | _ -> 
+                let digit = n % 10
+                let newAcc = 
+                    match digit % 2 <> 0, digit > 3 with
+                    true, true -> acc + 1
+                    | _ -> acc
+                count_digits (n / 10) newAcc
+        count_digits number 0 
+
+    
+    let sum_digits n =
+        let rec sum n acc =
+            match n with
+            | 0 -> acc
+            | _ -> sum (n / 10) (acc + (n % 10))
+        sum n 0
+    
+  
+

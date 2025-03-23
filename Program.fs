@@ -150,11 +150,15 @@ let main (args : string[]) =
 
     let count_coprime_with_condition = traverse_coprime_condition 5003 (fun acc _ -> acc + 1) 0 (fun d -> d > 3)
     System.Console.WriteLine("Количество взаимно простых цифр > 3: {0}", count_coprime_with_condition)
-*)
 
+    // Задание 16.1
     let prime_divisors_sum = sum_prime_divisors 28
     System.Console.WriteLine("Сумма простых делителей {0}", prime_divisors_sum)
+*)
+    // Задание 16.2
+    let odd_digits_count = count_odd_digit_greater_tree 75124
+    System.Console.WriteLine("Количество нечетных цифр числа, больших 3: {0}", odd_digits_count)
 
-
+  
 
     0
