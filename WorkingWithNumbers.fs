@@ -124,5 +124,16 @@ module NumberFunctions =
             | _ -> sum (n / 10) (acc + (n % 10))
         sum n 0
     
-  
+    let product_divisors_digit_sum_less_than_original number =
+        let original_sum_digits = sum_digits number
+        let rec product_valid_divisors n acc divisor =
+            match divisor > n / 2 with
+            | true -> acc
+            | false ->
+                let newAcc = 
+                    match n % divisor = 0 && sum_digits divisor < original_sum_digits with
+                    | true -> acc * divisor
+                    | false -> acc
+                product_valid_divisors n newAcc (divisor + 1)
+        product_valid_divisors number 1 2
 

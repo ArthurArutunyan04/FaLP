@@ -154,11 +154,15 @@ let main (args : string[]) =
     // Задание 16.1
     let prime_divisors_sum = sum_prime_divisors 28
     System.Console.WriteLine("Сумма простых делителей {0}", prime_divisors_sum)
-*)
+
     // Задание 16.2
     let odd_digits_count = count_odd_digit_greater_tree 75124
     System.Console.WriteLine("Количество нечетных цифр числа, больших 3: {0}", odd_digits_count)
+*)
+    // Задание 16.3
+    let product_divisors = product_divisors_digit_sum_less_than_original 28
+    System.Console.WriteLine("Произведение делителей числа, сумма цифр которых меньше суммы цифр числа: {0}", product_divisors)
 
-  
+
 
     0
