@@ -46,6 +46,13 @@ let respond_favorite_language language =
     | "PHP" | "GO" | "Rust" -> "Норм"
     | _ -> "Это какой-то нн?"
 
+let chooseMethod (func_num, num) : unit =
+    match func_num with
+    | 1 -> sum_prime_divisors num |> Console.WriteLine
+    | 2 -> count_odd_digit_greater_three num |> Console.WriteLine
+    | 3 -> product_divisors_digit_sum_less_than_original num |> Console.WriteLine
+    | _ -> Console.WriteLine("Неверный номер")
+
 
 [<EntryPoint>]
 let main (args : string[]) =
@@ -97,7 +104,6 @@ let main (args : string[]) =
 
     let test =  func false number
     System.Console.WriteLine("Ответ: {0}", test)
-*)
 
     // Задание 7-8
     let sum_digits = traverse 132 (fun acc digit -> acc + digit) 0
@@ -162,7 +168,15 @@ let main (args : string[]) =
     // Задание 16.3
     let product_divisors = product_divisors_digit_sum_less_than_original 28
     System.Console.WriteLine("Произведение делителей числа, сумма цифр которых меньше суммы цифр числа: {0}", product_divisors)
+*)
 
+    Console.Write("Введите номер функции и число через запятую: ")
+    Console.ReadLine()
+    |> fun input -> 
+        input.Split(',') 
+        |> Array.map int
+        |> fun values -> (values.[0], values.[1])
+    |> chooseMethod
 
 
     0
