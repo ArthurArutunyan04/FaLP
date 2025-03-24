@@ -27,103 +27,86 @@ module NumberFunctions =
                 number * fact(number - 1)
         fact number
 
+    let last_digit number = number % 10
+    let remove_last_digit number = number / 10
 
-    let traverse number operation acum = 
-        let rec trav number acc =
-            match number with 
-            0 -> acc 
+    let sum_digits number =
+        let rec sum acc n =
+            match n with
+            | 0 -> acc
+            | _ -> sum (acc + last_digit n) (remove_last_digit n)
+        sum 0 number
+
+    let traverse number operation acum =
+        let rec trav num acc =
+            match num with 
+            | 0 -> acc
             | _ ->
-                let digit = number % 10
-                trav (number/10) (operation acc digit)
+                let digit = last_digit num
+                trav (remove_last_digit num) (operation acc digit)
         trav number acum
-
 
     let traverse_condition number operation acum predicate =
-        let rec trav number acc =
-            match number, predicate (number % 10) with
-            0, _ -> acc  
-            | _ , true -> trav (number / 10) (operation acc (number % 10))
-            | _, false -> trav (number / 10) acc 
+        let rec trav num acc =
+            match num with
+            | 0 -> acc
+            | _ when predicate (last_digit num) -> 
+                trav (remove_last_digit num) (operation acc (last_digit num))
+            | _ -> trav (remove_last_digit num) acc
         trav number acum
 
-
-    let rec GCD a b = 
+    let rec GCD a b =
         match b with 
-        0 -> a
+        | 0 -> a
         | _ -> GCD b (a % b)
-
 
     let traverse_coprime number operation acum =
         let rec trav num acc =
             match num with
             | 0 -> acc
             | _ ->
-                let digit = num % 10
+                let digit = last_digit num
                 let newAcc = if GCD number digit = 1 then operation acc digit else acc
-                trav (num / 10) newAcc
+                trav (remove_last_digit num) newAcc
         trav number acum
-
 
     let euler_phi number =
         traverse_coprime number (fun acc _ -> acc + 1) 0
-
 
     let traverse_coprime_condition number operation acum condition = 
         let rec trav num acc = 
             match num with
             | 0 -> acc
-            | _ when GCD number (num % 10) = 1 && condition (num % 10) ->
-                trav (num / 10) (operation acc (num % 10))
-            | _ -> 
-                trav (num / 10) acc
+            | _ when GCD number (last_digit num) = 1 && condition (last_digit num) ->
+                trav (remove_last_digit num) (operation acc (last_digit num))
+            | _ -> trav (remove_last_digit num) acc
         trav number acum
 
-            
     let is_prime number =
         let rec check divisor =
             match divisor * divisor > number with
-            | true -> true  
-            | false ->  
+            | true -> true
+            | false -> 
                 match number % divisor = 0 with
-                | true -> false  
-                | false -> check (divisor + 1) 
+                | true -> false
+                | false -> check (divisor + 1)
         match number < 2 with
-        | true -> false  
+        | true -> false
         | false -> check 2
-
 
     let sum_prime_divisors number = 
         let rec sum_divisors n acc divisor =
             match divisor > n / 2 with
-            true -> acc
+            | true -> acc
             | false -> 
                 match n % divisor = 0, is_prime divisor with
-                true, true -> sum_divisors n (acc + divisor) (divisor + 1)
+                | true, true -> sum_divisors n (acc + divisor) (divisor + 1)
                 | _ -> sum_divisors n acc (divisor + 1)
         sum_divisors number 0 2
 
-    
-    let count_odd_digit_greater_tree number =
-        let rec count_digits n acc = 
-            match n with
-            0 -> acc
-            | _ -> 
-                let digit = n % 10
-                let newAcc = 
-                    match digit % 2 <> 0, digit > 3 with
-                    true, true -> acc + 1
-                    | _ -> acc
-                count_digits (n / 10) newAcc
-        count_digits number 0 
+    let count_odd_digit_greater_three number =
+        traverse_condition number (fun acc _ -> acc + 1) 0 (fun d -> d % 2 <> 0 && d > 3)
 
-    
-    let sum_digits n =
-        let rec sum n acc =
-            match n with
-            | 0 -> acc
-            | _ -> sum (n / 10) (acc + (n % 10))
-        sum n 0
-    
     let product_divisors_digit_sum_less_than_original number =
         let original_sum_digits = sum_digits number
         let rec product_valid_divisors n acc divisor =
@@ -136,4 +119,3 @@ module NumberFunctions =
                     | false -> acc
                 product_valid_divisors n newAcc (divisor + 1)
         product_valid_divisors number 1 2
-

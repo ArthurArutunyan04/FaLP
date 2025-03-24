@@ -97,7 +97,7 @@ let main (args : string[]) =
 
     let test =  func false number
     System.Console.WriteLine("Ответ: {0}", test)
-
+*)
 
     // Задание 7-8
     let sum_digits = traverse 132 (fun acc digit -> acc + digit) 0
@@ -156,9 +156,9 @@ let main (args : string[]) =
     System.Console.WriteLine("Сумма простых делителей {0}", prime_divisors_sum)
 
     // Задание 16.2
-    let odd_digits_count = count_odd_digit_greater_tree 75124
+    let odd_digits_count = count_odd_digit_greater_three 75124
     System.Console.WriteLine("Количество нечетных цифр числа, больших 3: {0}", odd_digits_count)
-*)
+
     // Задание 16.3
     let product_divisors = product_divisors_digit_sum_less_than_original 28
     System.Console.WriteLine("Произведение делителей числа, сумма цифр которых меньше суммы цифр числа: {0}", product_divisors)
