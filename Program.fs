@@ -281,10 +281,14 @@ let main (args : string[]) =
     let list1 = [1; 2; 3; 4; 5]
     let list2 = [2; 4; 1; 5]
     Console.WriteLine("Наибольшая общая подпоследовательность: {0}", longest_subsequence list1 list2)  
-*)
 
     // Задание 18
     let reverse = "Привет!"
     Console.WriteLine("Обратная строка: {0}",reverse_string reverse)
-    
+*)
+   
+    // Задание 19
+    let String = "Слово!_Word-1234"
+    Console.WriteLine("Количество русских букв: {0}",count_ru_letters String)
+
     0

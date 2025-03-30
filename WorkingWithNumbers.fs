@@ -362,3 +362,11 @@ module ListFunctions =
         let charArray = s.ToCharArray()
         let reversed = Array.rev charArray
         System.String reversed
+
+    let count_ru_letters (str: string) =
+        [0..str.Length-1]
+        |> List.fold (fun count i ->
+            let code = int str.[i]
+            if (code >= 1040 && code <= 1103) || code = 1105 || code = 1025
+            then count + 1
+            else count) 0
