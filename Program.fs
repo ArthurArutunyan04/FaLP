@@ -285,10 +285,19 @@ let main (args : string[]) =
     // Задание 18
     let reverse = "Привет!"
     Console.WriteLine("Обратная строка: {0}",reverse_string reverse)
-*)
    
     // Задание 19
     let String = "Слово!_Word-1234"
     Console.WriteLine("Количество русских букв: {0}",count_ru_letters String)
+*)
 
+    // Задание 20
+    let strings = [
+        "ФИЛП";
+        "Лямбды";
+        "Пролог";
+    ]
+    let sorted = sort_strings strings
+    print_list sorted
+    
     0

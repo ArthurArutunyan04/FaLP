@@ -370,3 +370,27 @@ module ListFunctions =
             if (code >= 1040 && code <= 1103) || code = 1105 || code = 1025
             then count + 1
             else count) 0
+
+    let is_vowel c =
+        match Char.ToLower(c) with
+        | 'а' | 'е' | 'ё' | 'и' | 'о' | 'у' | 'ы' | 'э' | 'ю' | 'я' -> true
+        | _ -> false
+
+    let count_letters str =
+        str
+        |> List.ofSeq
+        |> List.filter Char.IsLetter
+        |> List.fold (fun (v, c) x ->
+            match is_vowel x with
+            | true  -> (v + 1, c)
+            | false -> (v, c + 1)
+        ) (0, 0)
+
+    let calculate_diff str =
+        let vowels, consonants = count_letters str
+        match vowels + consonants with
+        | 0 -> 0.0
+        | total -> float (consonants - vowels) / float total
+
+    let sort_strings strings =
+        strings |> List.sortBy calculate_diff
