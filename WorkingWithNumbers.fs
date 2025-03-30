@@ -217,3 +217,27 @@ module ListFunctions =
         |> List.filter (fun x -> 
             list |> List.exists (fun y -> y * y = x))
         |> List.length
+
+    let create_tuples (a: int list) (b: int list) (c: int list) =
+            let sortedA = List.sortDescending a
+
+            let sum_digits n = 
+                let rec sum n acc =
+                    match n with
+                    | 0 -> acc
+                    | _ -> sum (n/10) (acc + n%10)
+                sum (abs n) 0
+
+            let sortedB = 
+                b |> List.sortBy (fun x -> (sum_digits x, -abs x))
+
+            let count_divisors n =
+                let n = abs n
+                if n = 0 then 0 else
+                [1..n] |> List.filter (fun x -> n % x = 0) |> List.length
+
+            let sortedC =
+                c |> List.sortBy (fun x -> (-count_divisors x, -abs x))
+
+            List.zip3 sortedA sortedB sortedC
+

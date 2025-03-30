@@ -191,7 +191,7 @@ let main (args : string[]) =
     Console.WriteLine("Полученный список: {0}", lst)
 *)
     // Задание 2
-    let list  = read_list 5
+    // let list  = read_list 5
 (* 
     print_list list 
 
@@ -225,10 +225,18 @@ let main (args : string[]) =
     // Задание 7
     let frequent_element = frequent_element list
     Console.WriteLine("Самый частный элемен: {0}", frequent_element) 
-*)
 
     // Задание 8
     let count_squares = count_quares list
     Console.WriteLine("Количество квадратов: {0}", count_squares) 
+*)
+
+    // Задание 9 
+    Console.WriteLine("Список А: ") 
+    let listA  = read_list 3
+    Console.WriteLine("Список B: ") 
+    let listB  = read_list 3
+    Console.WriteLine("Список С: ") 
+    let listC  = read_list 3
 
     0
