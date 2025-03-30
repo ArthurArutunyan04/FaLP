@@ -240,12 +240,17 @@ let main (args : string[]) =
     // let listC  = read_list 3
     let list_tuples = create_tuples [10;20;30] [123;111;432] [12;24;36]
     Console.WriteLine("Полученные картежи: {0}", list_tuples) 
-*)
 
     // Задание 10
     let strings = read_strings ()
     let sortedStrings = sort_string_length strings
     Console.WriteLine("Отсортированный список: {0}", String.Join("", sortedStrings))
+*)
 
+    // Задание 11
+    // 11.1
+    let lst1 = [1; 5; 3; 5; 2]
+    Console.WriteLine("Количество элементов после последнего максимального: {0}", count_after_last_max lst1)    
+    Console.WriteLine("Количество элементов после последнего максимального: {0}", countAfterLastMax lst1)     
 
     0

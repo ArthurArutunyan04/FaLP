@@ -224,7 +224,7 @@ module ListFunctions =
             let sum_digits n = 
                 let rec sum n acc =
                     match n with
-                    | 0 -> acc
+                    0 -> acc
                     | _ -> sum (n/10) (acc + n%10)
                 sum (abs n) 0
 
@@ -247,3 +247,23 @@ module ListFunctions =
     
     let sort_string_length (strings : string list) : string list =
         strings |> List.sortBy (fun s -> s.Length)
+
+// 11.1 
+    let count_after_last_max list =
+        let maxVal = List.max list
+        list 
+        |> List.rev
+        |> List.takeWhile (fun x -> x <> maxVal)
+        |> List.length
+
+    let countAfterLastMax list =
+        let rec find_last_max lst maxVal lastPos currentPos =
+            match lst with
+            [] -> (maxVal, lastPos)
+            | x :: xs ->
+                let newMax = max x maxVal
+                let newPos = if x >= newMax then currentPos else lastPos
+                find_last_max xs newMax newPos (currentPos + 1)
+        
+        let maxVal, pos = find_last_max list (List.head list) 0 0
+        List.length list - pos - 1
