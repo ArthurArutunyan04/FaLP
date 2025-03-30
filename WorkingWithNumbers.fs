@@ -211,3 +211,9 @@ module ListFunctions =
         |> List.countBy id
         |> List.maxBy snd
         |> fst
+
+    let count_quares list =
+        list
+        |> List.filter (fun x -> 
+            list |> List.exists (fun y -> y * y = x))
+        |> List.length

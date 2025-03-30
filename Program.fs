@@ -221,10 +221,14 @@ let main (args : string[]) =
     let tree = build_tree numbers
     Console.WriteLine("Построенное дерево:")
     print_tree tree
-*)
 
     // Задание 7
     let frequent_element = frequent_element list
     Console.WriteLine("Самый частный элемен: {0}", frequent_element) 
+*)
+
+    // Задание 8
+    let count_squares = count_quares list
+    Console.WriteLine("Количество квадратов: {0}", count_squares) 
 
     0
