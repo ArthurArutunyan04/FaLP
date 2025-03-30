@@ -185,9 +185,14 @@ let main (args : string[]) =
 *)
 
     // Задание 1
-    Console.Write("Введите количество элементов: ")
+(*    Console.Write("Введите количество элементов: ")
     let n = Console.ReadLine() |> int
     let lst = readList n
     Console.WriteLine("Полученный список: {0}", lst)
+*)
+    // Задание 2
+    let numbers = readList 3 
+    printList numbers
+    
 
     0

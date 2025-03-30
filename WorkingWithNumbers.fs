@@ -35,14 +35,14 @@ module NumberFunctions =
     let sum_digits number =
         let rec sum acc n =
             match n with
-            | 0 -> acc
+            0 -> acc
             | _ -> sum (acc + last_digit n) (remove_last_digit n)
         sum 0 number
 
     let traverse number operation acum =
         let rec trav num acc =
             match num with 
-            | 0 -> acc
+            0 -> acc
             | _ ->
                 let digit = last_digit num
                 trav (remove_last_digit num) (operation acc digit)
@@ -51,7 +51,7 @@ module NumberFunctions =
     let traverse_condition number operation acum predicate =
         let rec trav num acc =
             match num with
-            | 0 -> acc
+            0 -> acc
             | _ when predicate (last_digit num) -> 
                 trav (remove_last_digit num) (operation acc (last_digit num))
             | _ -> trav (remove_last_digit num) acc
@@ -59,13 +59,13 @@ module NumberFunctions =
 
     let rec GCD a b =
         match b with 
-        | 0 -> a
+        0 -> a
         | _ -> GCD b (a % b)
 
     let traverse_coprime number operation acum =
         let rec trav num acc =
             match num with
-            | 0 -> acc
+            0 -> acc
             | _ ->
                 let digit = last_digit num
                 let newAcc = if GCD number digit = 1 then operation acc digit else acc
@@ -78,7 +78,7 @@ module NumberFunctions =
     let traverse_coprime_condition number operation acum condition = 
         let rec trav num acc = 
             match num with
-            | 0 -> acc
+            0 -> acc
             | _ when GCD number (last_digit num) = 1 && condition (last_digit num) ->
                 trav (remove_last_digit num) (operation acc (last_digit num))
             | _ -> trav (remove_last_digit num) acc
@@ -87,22 +87,22 @@ module NumberFunctions =
     let is_prime number =
         let rec check divisor =
             match divisor * divisor > number with
-            | true -> true
+            true -> true
             | false -> 
                 match number % divisor = 0 with
-                | true -> false
+                true -> false
                 | false -> check (divisor + 1)
         match number < 2 with
-        | true -> false
+        true -> false
         | false -> check 2
 
     let sum_prime_divisors number = 
         let rec sum_divisors n acc divisor =
             match divisor > n / 2 with
-            | true -> acc
+            true -> acc
             | false -> 
                 match n % divisor = 0, is_prime divisor with
-                | true, true -> sum_divisors n (acc + divisor) (divisor + 1)
+                true, true -> sum_divisors n (acc + divisor) (divisor + 1)
                 | _ -> sum_divisors n acc (divisor + 1)
         sum_divisors number 0 2
 
@@ -113,26 +113,39 @@ module NumberFunctions =
         let original_sum_digits = sum_digits number
         let rec product_valid_divisors n acc divisor =
             match divisor > n / 2 with
-            | true -> acc
+            true -> acc
             | false ->
                 let newAcc = 
                     match n % divisor = 0 && sum_digits divisor < original_sum_digits with
-                    | true -> acc * divisor
+                    true -> acc * divisor
                     | false -> acc
                 product_valid_divisors n newAcc (divisor + 1)
         product_valid_divisors number 1 2
 
 module ListFunctions =
 
-   let readList n =
-    let rec readItems remaining acc =
-        match remaining with
-        | 0 -> List.rev acc
-        | _ ->
-            Console.Write("Введите элемент {0}: ", n - remaining + 1)
-            let number = Console.ReadLine() |> int
-            readItems (remaining - 1) (number :: acc)
-    
-    match n with
-    | x when x <= 0 -> []
-    | _ -> readItems n []
+    let readList n =
+        let rec readItems remaining acc =
+            match remaining with
+            0 -> List.rev acc
+            | _ ->
+                Console.Write("Введите элемент {0}: ", n - remaining + 1)
+                let number = Console.ReadLine() |> int
+                readItems (remaining - 1) (number :: acc)
+        
+        match n with
+        x when x <= 0 -> []
+        | _ -> readItems n []
+
+    let printList lst =
+        let rec printTailRecursive isFirst remainingList =
+            match remainingList with
+            [] -> ()
+            | head :: tail ->
+                if not isFirst then Console.Write(" ")
+                Console.Write(head.ToString())
+                printTailRecursive false tail
+        
+        Console.Write("[")
+        printTailRecursive true lst
+        Console.WriteLine("]")
