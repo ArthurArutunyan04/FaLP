@@ -348,3 +348,14 @@ module ListFunctions =
                     process_list (x :: unique) (count 0 list :: counts) xs
         process_list [] [] list
 
+    let longest_subsequence a b =
+        let rec find = function
+            [], _ | _, [] -> []
+            | x::xs, y::ys when x = y -> x :: find (xs, ys)
+            | x::xs, y::ys -> 
+                let l1 = find (x::xs, ys)
+                let l2 = find (xs, y::ys)
+                if List.length l1 > List.length l2 then l1 else l2
+        find (a, b)
+
+    
