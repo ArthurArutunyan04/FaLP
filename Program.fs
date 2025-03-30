@@ -193,12 +193,24 @@ let main (args : string[]) =
     // Задание 2
     let numbers = read_list 3 
     print_list numbers
-*)
 
     // Задание 3
     let list = read_list 5
     let filtred_list = filtered_fold list (+) (fun x -> x % 2 = 0) 0
     Console.WriteLine("Полученное значение: {0}", filtred_list) 
+*)
+
+    // Задание 4
+    let list = read_list 5
+
+    let min_element = filtered_fold list (min) (fun _ -> true) Int32.MaxValue
+    Console.WriteLine("Минимальный элемент: {0}", min_element) 
+    
+    let sum_even_elements = filtered_fold list (+) (fun x -> x % 2 = 0) 0
+    Console.WriteLine("Сумма четных элементов: {0}", sum_even_elements) 
+
+    let count_odd_elements = filtered_fold list (fun acc _ -> acc + 1) (fun x -> x % 2 <> 0) 0
+    Console.WriteLine("Количество нечетных элементов: {0}", count_odd_elements) 
 
 
     0
