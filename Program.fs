@@ -253,4 +253,29 @@ let main (args : string[]) =
     Console.WriteLine("Количество элементов после последнего максимального: {0}", count_after_last_max lst1)    
     Console.WriteLine("Количество элементов после последнего максимального: {0}", countAfterLastMax lst1)     
 
+    // 11.11
+    let lst2 = [1; 3; 5; 3; 2; 5; 1]
+    Console.WriteLine("Уникальный элемент: {0}", find_unique lst2)
+    Console.WriteLine("Уникальный элемент: {0}", findUnique lst2)
+
+    // 11.21
+    let lst3 = [1; 5; 3; 5; 2]
+    Console.WriteLine("Элементы после первого максимального: {0}", after_first_max lst3)
+    Console.WriteLine("Элементы после первого максимального: {0}", afterFirstMax lst3)
+    
+    // 11.31
+    let lst4 = [1; 2; 3; 4; 5; 6]
+    Console.WriteLine("Кол-во четных элементов: {0}", count_even lst4)
+    Console.WriteLine("Кол-во четных элементов: {0}", countEven lst4)
+   
+    // 11.41
+    let lst5 = [-2; 1; -3; 4]
+    Console.WriteLine("Среднее арифметическое модулей: {0}", average_abs lst5)
+    Console.WriteLine("Среднее арифметическое модулей: {0}", averageAbs lst5)
+
+    // 11.51
+    let lst6 = [1; 3; 1; 2; 3; 3]
+    Console.WriteLine(split_unique_counts lst6)
+    Console.WriteLine(splitUniqueCounts lst6)
+
     0

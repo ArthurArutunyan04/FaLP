@@ -267,3 +267,84 @@ module ListFunctions =
         
         let maxVal, pos = find_last_max list (List.head list) 0 0
         List.length list - pos - 1
+
+// 11.11
+    let find_unique list =
+        list
+        |> List.groupBy id
+        |> List.find (fun (_, group) -> List.length group = 1)
+        |> fst
+
+    let findUnique (list: int list) =
+        let rec is_unique x = function
+            | [] -> true
+            | y :: ys when x = y -> false
+            | _ :: ys -> is_unique x ys
+
+        let rec find_Unique = function
+            | [] -> failwith "Уникальный элемент не найден"
+            | x :: xs -> if is_unique x xs then x else find_Unique xs
+
+        find_Unique list
+
+// 11.21
+    let after_first_max list =
+        let maxVal = List.max list
+        list
+        |> List.skipWhile (fun x -> x <> maxVal)
+        |> List.tail
+
+    let afterFirstMax list =
+        let rec skip_until_max found acc = function
+            [] -> List.rev acc
+            | x :: xs when found -> skip_until_max true (x :: acc) xs
+            | x :: xs when x = List.max list -> skip_until_max true acc xs
+            | _ :: xs -> skip_until_max false acc xs
+        skip_until_max false [] list
+
+// 11.31
+    let count_even list =
+        list
+        |> List.filter (fun x -> x % 2 = 0)
+        |> List.length
+
+    let countEven list =
+        let rec count acc = function
+            [] -> acc
+            | x :: xs -> count (if x % 2 = 0 then acc + 1 else acc) xs
+        count 0 list
+
+// 11.41
+    let average_abs list =
+        list
+        |> List.map abs
+        |> List.averageBy float
+
+    let averageAbs list =
+        let rec sum_count (sum, cnt) = function
+            [] -> float sum / float cnt
+            | x :: xs -> sum_count (sum + abs x, cnt + 1) xs
+        sum_count (0, 0) list
+
+// 11.51
+    let split_unique_counts list =
+        let unique = list |> List.distinct
+        let counts = unique |> List.map (fun x -> List.sumBy (fun y -> if y = x then 1 else 0) list)
+        (unique, counts)
+
+    let splitUniqueCounts list =
+        let rec process_list unique counts = function
+            [] -> (List.rev unique, List.rev counts)
+            | x :: xs ->
+                let rec count c = function
+                    [] -> c
+                    | y :: ys -> count (if x = y then c + 1 else c) ys
+                let rec exists = function
+                    [] -> false
+                    | v :: vs -> v = x || exists vs
+                if exists unique then 
+                    process_list unique counts xs
+                else
+                    process_list (x :: unique) (count 0 list :: counts) xs
+        process_list [] [] list
+
