@@ -124,28 +124,36 @@ module NumberFunctions =
 
 module ListFunctions =
 
-    let readList n =
-        let rec readItems remaining acc =
+    let read_list n =
+        let rec read_items remaining acc =
             match remaining with
             0 -> List.rev acc
             | _ ->
                 Console.Write("Введите элемент {0}: ", n - remaining + 1)
                 let number = Console.ReadLine() |> int
-                readItems (remaining - 1) (number :: acc)
+                read_items (remaining - 1) (number :: acc)
         
         match n with
         x when x <= 0 -> []
-        | _ -> readItems n []
+        | _ -> read_items n []
 
-    let printList lst =
-        let rec printTailRecursive isFirst remainingList =
+    let print_list lst =
+        let rec print_tail_rec isFirst remainingList =
             match remainingList with
             [] -> ()
             | head :: tail ->
                 if not isFirst then Console.Write(" ")
                 Console.Write(head.ToString())
-                printTailRecursive false tail
+                print_tail_rec false tail
         
         Console.Write("[")
-        printTailRecursive true lst
+        print_tail_rec true lst
         Console.WriteLine("]")
+
+    let filtered_fold (list: int list) (f: int -> int -> int) (p: int -> bool) (acc: int) =
+        let rec process_list lst currentAcc =
+            match lst with
+            [] -> currentAcc
+            | head :: tail when p head -> process_list tail (f currentAcc head)
+            | _ :: tail -> process_list tail currentAcc
+        process_list list acc

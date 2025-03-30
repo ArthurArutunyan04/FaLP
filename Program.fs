@@ -189,10 +189,16 @@ let main (args : string[]) =
     let n = Console.ReadLine() |> int
     let lst = readList n
     Console.WriteLine("Полученный список: {0}", lst)
-*)
-    // Задание 2
-    let numbers = readList 3 
-    printList numbers
     
+    // Задание 2
+    let numbers = read_list 3 
+    print_list numbers
+*)
+
+    // Задание 3
+    let list = read_list 5
+    let filtred_list = filtered_fold list (+) (fun x -> x % 2 = 0) 0
+    Console.WriteLine("Полученное значение: {0}", filtred_list) 
+
 
     0
