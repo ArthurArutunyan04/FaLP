@@ -209,10 +209,19 @@ let main (args : string[]) =
 
     let count_odd_elements = filtered_fold list (fun acc _ -> acc + 1) (fun x -> x % 2 <> 0) 0
     Console.WriteLine("Количество нечетных элементов: {0}", count_odd_elements) 
-*)
 
     // Задание 5
     let freq_element = most_frequent_element list
     Console.WriteLine("Самый частный элемен: {0}", freq_element) 
+*)
+
+    // Задание 6
+    Console.Write("Количестве элементов дерева: ")
+    let count = Console.ReadLine() |> int
+    let numbers = read_list count
+    let tree = build_tree numbers
+    Console.WriteLine("Построенное дерево:")
+    printTree tree
+
 
     0

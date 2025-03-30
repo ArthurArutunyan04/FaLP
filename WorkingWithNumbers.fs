@@ -178,3 +178,26 @@ module ListFunctions =
         match list with
         | [] -> failwith "Список пустой"
         | head :: _ -> find_most_frequent list head 0
+
+    type Tree =
+        Empty 
+        | Node of int * Tree * Tree
+
+    let build_tree numbers =
+        let rec insert value tree =
+            match tree with
+            Empty -> Node(value, Empty, Empty)
+            | Node(v, left, right) ->
+                if value <= v then Node(v, insert value left, right)
+                else Node(v, left, insert value right)
+        
+        List.fold (fun acc num -> insert num acc) Empty numbers
+
+    let printTree tree =
+        let rec print = function
+            | Empty -> ()
+            | Node(v, left, right) ->
+                Console.WriteLine(v.ToString())
+                print left
+                print right
+        print tree
