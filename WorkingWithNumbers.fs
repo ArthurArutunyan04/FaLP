@@ -157,3 +157,24 @@ module ListFunctions =
             | head :: tail when p head -> process_list tail (f currentAcc head)
             | _ :: tail -> process_list tail currentAcc
         process_list list acc
+
+    let most_frequent_element list =
+        let rec count_occurrences elem lst count =
+            match lst with
+            | [] -> count
+            | head :: tail when head = elem -> count_occurrences elem tail (count + 1)
+            | _ :: tail -> count_occurrences elem tail count
+
+        let rec find_most_frequent remaining currentMaxElem currentMaxCount =
+            match remaining with
+            | [] -> currentMaxElem
+            | head :: tail ->
+                let count = count_occurrences head list 0
+                if count > currentMaxCount then
+                    find_most_frequent tail head count
+                else
+                    find_most_frequent tail currentMaxElem currentMaxCount
+
+        match list with
+        | [] -> failwith "Список пустой"
+        | head :: _ -> find_most_frequent list head 0

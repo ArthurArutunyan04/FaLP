@@ -189,19 +189,17 @@ let main (args : string[]) =
     let n = Console.ReadLine() |> int
     let lst = readList n
     Console.WriteLine("Полученный список: {0}", lst)
-    
+*)
     // Задание 2
-    let numbers = read_list 3 
-    print_list numbers
+    let list  = read_list 5
+(* 
+    print_list list 
 
     // Задание 3
-    let list = read_list 5
     let filtred_list = filtered_fold list (+) (fun x -> x % 2 = 0) 0
     Console.WriteLine("Полученное значение: {0}", filtred_list) 
-*)
 
     // Задание 4
-    let list = read_list 5
 
     let min_element = filtered_fold list (min) (fun _ -> true) Int32.MaxValue
     Console.WriteLine("Минимальный элемент: {0}", min_element) 
@@ -211,6 +209,10 @@ let main (args : string[]) =
 
     let count_odd_elements = filtered_fold list (fun acc _ -> acc + 1) (fun x -> x % 2 <> 0) 0
     Console.WriteLine("Количество нечетных элементов: {0}", count_odd_elements) 
+*)
 
+    // Задание 5
+    let freq_element = most_frequent_element list
+    Console.WriteLine("Самый частный элемен: {0}", freq_element) 
 
     0
