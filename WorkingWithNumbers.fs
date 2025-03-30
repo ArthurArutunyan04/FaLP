@@ -122,6 +122,8 @@ module NumberFunctions =
                 product_valid_divisors n newAcc (divisor + 1)
         product_valid_divisors number 1 2
 
+
+
 module ListFunctions =
 
     let read_list n =
@@ -179,6 +181,7 @@ module ListFunctions =
         | [] -> failwith "Список пустой"
         | head :: _ -> find_most_frequent list head 0
 
+
     type Tree =
         Empty 
         | Node of int * Tree * Tree
@@ -193,11 +196,18 @@ module ListFunctions =
         
         List.fold (fun acc num -> insert num acc) Empty numbers
 
-    let printTree tree =
+    let print_tree tree =
         let rec print = function
-            | Empty -> ()
+            Empty -> ()
             | Node(v, left, right) ->
                 Console.WriteLine(v.ToString())
                 print left
                 print right
         print tree
+
+    
+    let frequent_element list =
+        list
+        |> List.countBy id
+        |> List.maxBy snd
+        |> fst

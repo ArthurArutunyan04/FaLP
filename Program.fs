@@ -213,7 +213,6 @@ let main (args : string[]) =
     // Задание 5
     let freq_element = most_frequent_element list
     Console.WriteLine("Самый частный элемен: {0}", freq_element) 
-*)
 
     // Задание 6
     Console.Write("Количестве элементов дерева: ")
@@ -221,7 +220,11 @@ let main (args : string[]) =
     let numbers = read_list count
     let tree = build_tree numbers
     Console.WriteLine("Построенное дерево:")
-    printTree tree
+    print_tree tree
+*)
 
+    // Задание 7
+    let frequent_element = frequent_element list
+    Console.WriteLine("Самый частный элемен: {0}", frequent_element) 
 
     0
