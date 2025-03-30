@@ -358,4 +358,7 @@ module ListFunctions =
                 if List.length l1 > List.length l2 then l1 else l2
         find (a, b)
 
-    
+    let reverse_string (s: string) : string =
+        let charArray = s.ToCharArray()
+        let reversed = Array.rev charArray
+        System.String reversed

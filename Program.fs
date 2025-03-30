@@ -276,11 +276,15 @@ let main (args : string[]) =
     let lst6 = [1; 3; 1; 2; 3; 3]
     Console.WriteLine(split_unique_counts lst6)
     Console.WriteLine(splitUniqueCounts lst6)
-*)
 
     // Задание 17
     let list1 = [1; 2; 3; 4; 5]
     let list2 = [2; 4; 1; 5]
     Console.WriteLine("Наибольшая общая подпоследовательность: {0}", longest_subsequence list1 list2)  
+*)
 
+    // Задание 18
+    let reverse = "Привет!"
+    Console.WriteLine("Обратная строка: {0}",reverse_string reverse)
+    
     0
