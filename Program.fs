@@ -1,5 +1,7 @@
 ﻿open System
 open WorkingWithNumbers.NumberFunctions
+open WorkingWithNumbers.ListFunctions
+
 
 type SolveQuadratic = 
     None
@@ -46,12 +48,15 @@ let respond_favorite_language language =
     | "PHP" | "GO" | "Rust" -> "Норм"
     | _ -> "Это какой-то нн?"
 
-let chooseMethod (func_num, num) : unit =
+let choosee_method (func_num, num) : unit =
     match func_num with
     | 1 -> sum_prime_divisors num |> Console.WriteLine
     | 2 -> count_odd_digit_greater_three num |> Console.WriteLine
     | 3 -> product_divisors_digit_sum_less_than_original num |> Console.WriteLine
     | _ -> Console.WriteLine("Неверный номер")
+
+
+type Widget = { ID: int; Rev: int }
 
 
 [<EntryPoint>]
@@ -168,15 +173,21 @@ let main (args : string[]) =
     // Задание 16.3
     let product_divisors = product_divisors_digit_sum_less_than_original 28
     System.Console.WriteLine("Произведение делителей числа, сумма цифр которых меньше суммы цифр числа: {0}", product_divisors)
-*)
 
+    // Задание 20
     Console.Write("Введите номер функции и число через запятую: ")
     Console.ReadLine()
     |> fun input -> 
         input.Split(',') 
         |> Array.map int
         |> fun values -> (values.[0], values.[1])
-    |> chooseMethod
+    |> choosee_method
+*)
 
+    // Задание 1
+    Console.Write("Введите количество элементов: ")
+    let n = Console.ReadLine() |> int
+    let lst = readList n
+    Console.WriteLine("Полученный список: {0}", lst)
 
     0

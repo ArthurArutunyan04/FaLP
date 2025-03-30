@@ -1,4 +1,6 @@
 namespace WorkingWithNumbers
+open System
+
 
 module NumberFunctions =
 
@@ -119,3 +121,18 @@ module NumberFunctions =
                     | false -> acc
                 product_valid_divisors n newAcc (divisor + 1)
         product_valid_divisors number 1 2
+
+module ListFunctions =
+
+   let readList n =
+    let rec readItems remaining acc =
+        match remaining with
+        | 0 -> List.rev acc
+        | _ ->
+            Console.Write("Введите элемент {0}: ", n - remaining + 1)
+            let number = Console.ReadLine() |> int
+            readItems (remaining - 1) (number :: acc)
+    
+    match n with
+    | x when x <= 0 -> []
+    | _ -> readItems n []
