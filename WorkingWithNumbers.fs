@@ -241,3 +241,9 @@ module ListFunctions =
 
             List.zip3 sortedA sortedB sortedC
 
+    let read_strings () =
+        let count = System.Console.ReadLine() |> int
+        List.init count (fun _ -> System.Console.ReadLine())
+    
+    let sort_string_length (strings : string list) : string list =
+        strings |> List.sortBy (fun s -> s.Length)

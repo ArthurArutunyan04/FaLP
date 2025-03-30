@@ -229,14 +229,23 @@ let main (args : string[]) =
     // Задание 8
     let count_squares = count_quares list
     Console.WriteLine("Количество квадратов: {0}", count_squares) 
-*)
 
     // Задание 9 
-    Console.WriteLine("Список А: ") 
-    let listA  = read_list 3
-    Console.WriteLine("Список B: ") 
-    let listB  = read_list 3
-    Console.WriteLine("Список С: ") 
-    let listC  = read_list 3
+    // Console.WriteLine("Список А: ") 
+    // let listA  = read_list 3
+    // Console.WriteLine("Список B: ") Дан целочисленный массив, в котором лишь один элемент
+отличается от остальных. Необходимо найти значение этого элемента.
+    // let listB  = read_list 3
+    // Console.WriteLine("Список С: ") 
+    // let listC  = read_list 3
+    let list_tuples = create_tuples [10;20;30] [123;111;432] [12;24;36]
+    Console.WriteLine("Полученные картежи: {0}", list_tuples) 
+*)
+
+    // Задание 10
+    let strings = read_strings ()
+    let sortedStrings = sort_string_length strings
+    Console.WriteLine("Отсортированный список: {0}", String.Join("", sortedStrings))
+
 
     0
