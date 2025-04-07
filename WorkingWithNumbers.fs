@@ -394,3 +394,33 @@ module ListFunctions =
 
     let sort_strings strings =
         strings |> List.sortBy calculate_diff
+
+    let fibonacci = 
+        let rec fib = function
+            | 0 -> 
+                Console.WriteLine("F(0) = 0")  
+                0
+            | 1 -> 
+                Console.WriteLine("F(1) = 1")  
+                1
+            | n -> 
+                let fibN = fib (n - 1) + fib (n - 2)
+                Console.WriteLine("F({0}) = {1}", n, fibN)  
+                fibN
+        fib
+            
+    type Box<'a> = | Box of 'a
+
+    let mapBox (f: 'a -> 'b) (box: Box<'a>) : Box<'b> =
+        match box with
+        | Box x -> Box (f x)
+
+    type Cat = {
+        name: string;
+        age: int
+    }
+
+    
+        
+
+

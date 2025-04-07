@@ -289,7 +289,6 @@ let main (args : string[]) =
     // Задание 19
     let String = "Слово!_Word-1234"
     Console.WriteLine("Количество русских букв: {0}",count_ru_letters String)
-*)
 
     // Задание 20
     let strings = [
@@ -299,5 +298,33 @@ let main (args : string[]) =
     ]
     let sorted = sort_strings strings
     print_list sorted
-    
+*)
+    // Console.WriteLine(fibonacci 5)
+
+    let boxedNumber = Box 5
+    let boxedStringresult1 = 
+        boxedNumber 
+        |> mapBox (fun n -> $"Number: {n}") 
+        |> Console.WriteLine
+
+    let boxedString = Box "word"
+    let boxedStringresult2 = 
+        boxedString 
+        |> mapBox (fun text -> text.Length)
+        |> Console.WriteLine
+
+    let boxedBoolean = Box true
+    let boxedStringresult3 = 
+        boxedBoolean
+        |> mapBox (fun x -> if x then "Да" else "Нет")
+        |> Console.WriteLine
+
+    let boxedCat = Box {name = "Имя"; age = 3}
+    let boxedStringresult4 = 
+        boxedCat
+        |> mapBox (fun cat -> cat.age < 5)
+        |> Console.WriteLine
+
+
     0
+
