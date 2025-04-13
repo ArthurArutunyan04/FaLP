@@ -106,3 +106,36 @@ sisters(X) :-
     	write(Y), nl,
     	fail.
 sisters(_).
+
+
+%Task3
+grand_pa(X, Y) :-
+    	man(X),
+    	parent(X, P),
+    	parent(P, Y).
+
+grand_pas(X) :-
+    	grand_pa(Y, X),
+   	write(Y), nl,
+    	fail.
+grand_pas(_).
+
+
+grand_pa_and_son(X, Y) :-
+    	grand_pa(X, Y).
+
+
+uncle(X, Y) :-
+    	man(X),
+    	parent(P, Y),
+    	brother(X, P).
+
+uncles(X) :-
+    	uncle(Y, X),
+    	write(Y), nl,
+    	fail.
+uncles(_).
+
+
+
+
