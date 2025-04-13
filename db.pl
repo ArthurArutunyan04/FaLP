@@ -71,11 +71,12 @@ brothers(X) :-
     	fail.
 brothers(_).
 
+
 %Task1_6
 b_s(X, Y):-
 	X \= Y,
 	parent(P,X),
-	arent(P,Y).
+	parent(P,Y).
        	
 b_s(X):-
 	b_s(X,Y),
@@ -84,5 +85,24 @@ b_s(X):-
 b_s(_).
 
 
+%Task2
+father(X, Y) :-
+    	man(X),
+    	parent(X, Y).
 
+father(X) :-
+    	parent(F, X),
+    	man(F),
+    	write(F), nl.
 
+sister(X, Y) :-
+    	woman(X),
+    	X \= Y,
+    	parent(P, X),
+    	parent(P, Y).
+
+sisters(X) :-
+    	sister(Y, X),
+    	write(Y), nl,
+    	fail.
+sisters(_).
