@@ -91,3 +91,48 @@ remove_with_digit_sum([H|T], TargetSum, Result) :-
         	Result = [H|Rest],      	
         	remove_with_digit_sum(T, TargetSum, Rest)
     	).
+
+
+%Task2_1
+%mult_digits(+Number, -Product)
+mult_digits(0, 1).
+mult_digits(N, Product) :-
+    	abs(N, AbsN),  
+    	mult_digits(AbsN, 1, Product).
+mult_digits(0, Acc, Acc).
+mult_digits(N, Acc, Product) :-
+    	Digit is N mod 10,
+    	NewAcc is Acc * Digit,
+    	NewN is N // 10,
+    	mult_digits(NewN, NewAcc, Product).
+
+
+%Task2_2
+%count_odd_gt3(+Number, -Count)
+count_odd_gt3(N, Count) :-
+    	abs(N, AbsN),
+    	count_odd_gt3(AbsN, 0, Count).
+count_odd_gt3(0, Acc, Acc).
+count_odd_gt3(N, Acc, Count) :-
+    	Digit is N mod 10,
+    	(Digit > 3, 1 is Digit mod 2 -> 
+        	NewAcc is Acc + 1
+    	; 
+        	NewAcc is Acc
+    	),
+    	NewN is N // 10,
+    	count_odd_gt3(NewN, NewAcc, Count).
+
+
+%Task2_3
+%gcd(+A, +B, -Result)
+gcd(A, 0, A) :- !.
+gcd(0, B, B) :- !.
+gcd(A, B, Result) :-
+    	A > B,
+    	Remainder is A mod B,
+    	gcd(B, Remainder, Result).
+gcd(A, B, Result) :-
+    	B > A,
+    	gcd(B, A, Result).
+
