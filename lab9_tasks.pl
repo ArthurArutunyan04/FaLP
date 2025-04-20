@@ -140,24 +140,44 @@ gcd(A, B, Result) :-
 %Task3_1
 %count_after_last_max(+List, -Count)
 count_after_last_max(List, Count) :-
-    max_list(List, Max),
-    append(_, [Max|Tail], List),
-    length(Tail, Count).   
+	max_list(List, Max),
+    	append(_, [Max|Tail], List),
+    	length(Tail, Count).   
 
 
 %Task3_13
 %move_before_min_to_end(+List, -Result)
 move_before_min_to_end(List, Result) :-
-    min_list(List, Min),
-    split_before(List, Min, Before, After),
-    append(After, Before, Result).
+    	min_list(List, Min),
+    	split_before(List, Min, Before, After),
+    	append(After, Before, Result).
 split_before([X|T], X, [], [X|T]) :- !.
 split_before([H|T], X, [H|Before], After) :-
-    split_before(T, X, Before, After).
+    	split_before(T, X, Before, After).
 
 
 %Task3_25
 %max_in_interval(+List, +A, +B, -Max)
 max_in_interval(List, A, B, Max) :-
-    include(between(A,B), List, Filtered),
-    max_list(Filtered, Max).
+    	include(between(A,B), List, Filtered),
+    	max_list(Filtered, Max).
+    
+    
+%Task4
+color(blond).
+color(brown).
+color(red).
+
+solve :-
+	color(Belokurov),
+	color(Ryzhov),
+	color(Chernov),
+	Belokurov \= Ryzhov, Belokurov \= Chernov, Ryzhov\= Chernov,
+	Belokurov \= blond,
+	Ryzhov \= red,
+	Chernov \= brown, 
+	(Ryzhov = brown ; Chernov = brown),
+    	Belokurov \= brown,
+	format('Белокуров: ~w~n', [Belokurov]),
+    	format('Рыжов: ~w~n', [Ryzhov]),
+	format('Чернов: ~w~n', [Chernov]).
