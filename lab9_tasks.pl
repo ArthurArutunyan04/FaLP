@@ -181,3 +181,88 @@ solve :-
 	format('Белокуров: ~w~n', [Belokurov]),
     	format('Рыжов: ~w~n', [Ryzhov]),
 	format('Чернов: ~w~n', [Chernov]).
+	
+	
+%Task5_1
+%sum_prime_divisors(+Number, -Sum)
+sum_prime_divisors(Number, Sum) :-
+    	findall(D, (divisor(Number, D), is_prime(D)), Divisors),
+    	sum_list(Divisors, Sum).
+
+divisor(N, D) :-
+    N > 0,
+    between(1, N, D),
+    N mod D =:= 0.
+
+is_prime(2).
+is_prime(P) :-
+    	P > 2,
+    	P mod 2 =\= 0,
+    	\+ has_divisor(P, 3).
+    
+has_divisor(P, D) :-
+    	D * D =< P,
+    	(P mod D =:= 0 ; 
+     	NextD is D + 2,
+     	has_divisor(P, NextD)).
+ 
+read_number(Number) :-
+    	repeat,
+    	write('Введите положительное целое число: '),
+    	read(Input),
+    	(integer(Input), Input > 0 -> 
+        	Number = Input, !
+    	; write('Ошибка ввода!'), nl,
+      	fail
+    	).
+ 
+print_sum(Sum) :-
+    	format('Сумма простых делителей: ~w~n', [Sum]).
+    
+solve_task1 :-
+    	read_number(N),
+    	sum_prime_divisors(N, Sum),
+    	print_sum(Sum),
+    	!.
+
+
+%Task6_37
+%find_smaller_left_neighbors(+List, -indices, -Count)
+find_smaller_left_neighbors(List, Indices, Count) :-
+    	find_smaller(List, 1, [], Indices), % Начинаем с индекса 1
+    	length(Indices, Count).
+
+find_smaller([_], _, Acc, Acc) :- !. 
+find_smaller([X,Y|T], Index, Acc, Result) :-
+    	(Y < X -> 
+        	NewAcc = [Index|Acc]
+    	; 
+        	NewAcc = Acc
+    	),
+    	NextIndex is Index + 1,
+    	find_smaller([Y|T], NextIndex, NewAcc, Result).
+
+print_indices_and_count(Indices, Count) :-
+    	write('Индексы элементов: '), write(Indices), nl,
+    	write('Количество таких элементов: '), write(Count), nl.
+    	
+solve_task6_37 :-
+    	read_list(List),
+    	find_smaller_left_neighbors(List, Indices, Count),
+    	reverse(Indices, SortedIndices),
+    	print_indices_and_count(SortedIndices, Count).
+    	
+
+%Task6_49
+%get_unique_prime_divisors(+List, -UniquePrimes)
+get_unique_prime_divisors(List, UniquePrimes) :-
+    	findall(D, (member(N, List), divisor(N, D), is_prime(D)), AllPrimes),
+    	sort(AllPrimes, UniquePrimes).
+    	
+print_unique_prime_divisors(Divisors) :-
+    	write('Уникальные простые делители: '), write(Divisors), nl.
+    	
+solve_task6_49 :-
+    	read_list(List),
+    	get_unique_prime_divisors(List, Divisors),
+    	print_unique_prime_divisors(Divisors).
