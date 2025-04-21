@@ -229,7 +229,7 @@ solve_task1 :-
 %Task6_37
 %find_smaller_left_neighbors(+List, -indices, -Count)
 find_smaller_left_neighbors(List, Indices, Count) :-
-    	find_smaller(List, 1, [], Indices), % Начинаем с индекса 1
+    	find_smaller(List, 1, [], Indices), 
     	length(Indices, Count).
 
 find_smaller([_], _, Acc, Acc) :- !. 
