@@ -266,3 +266,45 @@ solve_task6_49 :-
     	read_list(List),
     	get_unique_prime_divisors(List, Divisors),
     	print_unique_prime_divisors(Divisors).
+    	
+    	
+%Task7
+person(alekseev).
+person(borisov).
+person(konstantinov).
+person(dmitriev).
+
+profession(astronom).
+profession(poet).
+profession(prosaic).
+profession(dramaturg).
+
+solve_book :-
+	People = [
+	[alekseev, AProf, ABook],
+	[borisov, BProf, BBook],
+	[konstantinov, KProf, KBook],
+	[dmitriev, DProf, DBook]
+	],
+
+	permutation([astronom, poet, prosaic, dramaturg], [AProf, BProf, KProf, DProf]),
+	permutation([alekseev, borisov, konstantinov, dmitriev], [ABook, BBook, KBook, DBook]),
+
+	ABook \= alekseev, ABook \= borisov,
+	BBook \= alekseev, BBook \= borisov,
+	KBook \= konstantinov,
+	DBook \= dmitriev,
+	BBook = dmitriev,
+
+	member([_, poet, Dramaturg], People),	
+	member([Dramaturg, dramaturg, _], People),
+	member([_, prosaic, ProsaicBook], People),
+	member([Astronom, astronom, _], People),
+	ProsaicBook \= Astronom,
+
+    	print_result(People).
+
+print_result([]).
+print_result([[Name, Profession, Book]|T]) :-
+    	format("~w — ~w, читает книгу ~w~n", [Name, Profession, Book]),
+	print_result(T).
